@@ -11,4 +11,6 @@ object Chapter2 {
     }
     f(n, 0, 1)
   }
+
+  def isSorted[A](as: Array[A], ordered: (A, A) => Boolean): Boolean = ???
 }
