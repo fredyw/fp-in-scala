@@ -25,4 +25,8 @@ class Chapter2Suite extends FunSuite {
   test("uncurry") {
     assert(Chapter2.uncurry((a: Int) => (b: Int) => (a + b))(1, 2) == 3)
   }
+
+  test("compose") {
+    assert(Chapter2.compose((b: Int) => b * 2, (a: Int) => a + 1)(1) == 4)
+  }
 }
