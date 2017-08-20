@@ -12,12 +12,13 @@ class Chapter2Spec extends FlatSpec with Matchers {
     Chapter2.fib(6) shouldEqual 8
   }
 
-  "isSorted" should "return true for sorted array" in {
+  "isSorted" should "return true for sorted array and false for non-sorted array" in {
     Chapter2.isSorted(Array(1, 1, 2, 3, 4, 5, 5), (a: Int, b: Int) => a <= b) shouldEqual true
     Chapter2.isSorted(Array(1), (a: Int, b: Int) => a <= b) shouldEqual true
+    Chapter2.isSorted(Array(1, 2, 4, 3, 5, 1), (a: Int, b: Int) => a <= b) shouldEqual false
   }
 
-  "isSorted" should "return false for non-sorted array" in {
-    Chapter2.isSorted(Array(1, 2, 4, 3, 5, 1), (a: Int, b: Int) => a <= b) shouldEqual false
+  "curry" should "return a partial function" in {
+    Chapter2.curry((a: Int, b: Int) => a + b)(1)(2) shouldEqual 3
   }
 }
