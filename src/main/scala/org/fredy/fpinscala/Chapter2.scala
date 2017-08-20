@@ -12,5 +12,13 @@ object Chapter2 {
     f(n, 0, 1)
   }
 
-  def isSorted[A](as: Array[A], ordered: (A, A) => Boolean): Boolean = ???
+  def isSorted[A](as: Array[A], ordered: (A, A) => Boolean): Boolean = {
+    @tailrec
+    def f(prev: Int, curr: Int): Boolean = {
+      if (curr == as.length) true
+      else if (!ordered(as(prev), as(curr))) false
+      else f(curr, curr + 1)
+    }
+    f(0, 1)
+  }
 }
