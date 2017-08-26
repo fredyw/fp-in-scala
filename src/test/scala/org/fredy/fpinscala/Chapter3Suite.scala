@@ -25,4 +25,12 @@ class Chapter3Suite extends FunSuite {
     val list2 = Chapter3.List.dropWhile(Chapter3.List(1, 2, 3, 4, 5), (x: Int) => x <= 3)
     assert(list2 == Chapter3.List(4, 5))
   }
+
+  test("init") {
+    val list1 = Chapter3.List.init(Chapter3.List(1, 2, 3, 4, 5))
+    assert(list1 == Chapter3.List(1, 2, 3, 4))
+
+    val list2 = Chapter3.List.init(Chapter3.List(1, 2))
+    assert(list2 == Chapter3.List(1))
+  }
 }
