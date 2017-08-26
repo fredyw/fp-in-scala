@@ -16,8 +16,18 @@ object Chapter3 {
     }
 
     def setHead[A](l: List[A], h: A): List[A] = l match {
-      case Nil => Nil
+      case Nil => sys.error("setHead on empty list")
       case Cons(x, xs) => Cons(h, xs)
+    }
+
+    def drop[A](l: List[A], n: Int): List[A] = {
+      if (n == 0) l
+      else {
+        l match {
+          case Nil => Nil
+          case Cons(_, xs) => drop(xs, n - 1)
+        }
+      }
     }
   }
 }
