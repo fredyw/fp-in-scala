@@ -4,29 +4,29 @@ import org.scalatest._
 
 class Chapter2Suite extends FunSuite {
   test("fib") {
-    assert(Chapter2.fib(1) == 1)
-    assert(Chapter2.fib(2) == 1)
-    assert(Chapter2.fib(3) == 2)
-    assert(Chapter2.fib(4) == 3)
-    assert(Chapter2.fib(5) == 5)
-    assert(Chapter2.fib(6) == 8)
+    assert(1 == Chapter2.fib(1))
+    assert(1 == Chapter2.fib(2))
+    assert(2 == Chapter2.fib(3))
+    assert(3 == Chapter2.fib(4))
+    assert(5 == Chapter2.fib(5))
+    assert(8 == Chapter2.fib(6))
   }
 
   test("isSorted") {
-    assert(Chapter2.isSorted(Array(1, 1, 2, 3, 4, 5, 5), (a: Int, b: Int) => a <= b) == true)
-    assert(Chapter2.isSorted(Array(1), (a: Int, b: Int) => a <= b) == true)
-    assert(Chapter2.isSorted(Array(1, 2, 4, 3, 5, 1), (a: Int, b: Int) => a <= b) == false)
+    assert(true == Chapter2.isSorted(Array(1, 1, 2, 3, 4, 5, 5), (a: Int, b: Int) => a <= b))
+    assert(true == Chapter2.isSorted(Array(1), (a: Int, b: Int) => a <= b))
+    assert(false == Chapter2.isSorted(Array(1, 2, 4, 3, 5, 1), (a: Int, b: Int) => a <= b))
   }
 
   test("curry") {
-    assert(Chapter2.curry((a: Int, b: Int) => a + b)(1)(2) == 3)
+    assert(3 == Chapter2.curry((a: Int, b: Int) => a + b)(1)(2))
   }
 
   test("uncurry") {
-    assert(Chapter2.uncurry((a: Int) => (b: Int) => (a + b))(1, 2) == 3)
+    assert(3 == Chapter2.uncurry((a: Int) => (b: Int) => (a + b))(1, 2))
   }
 
   test("compose") {
-    assert(Chapter2.compose((b: Int) => b * 2, (a: Int) => a + 1)(1) == 4)
+    assert(4 == Chapter2.compose((b: Int) => b * 2, (a: Int) => a + 1)(1))
   }
 }
