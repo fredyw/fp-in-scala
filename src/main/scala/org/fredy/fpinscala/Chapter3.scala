@@ -13,10 +13,7 @@ object Chapter3 {
       else Cons(as.head, apply(as.tail: _*))
 
     def append[A](a1: List[A], a2: List[A]): List[A] =
-      a1 match {
-        case Nil => a2
-        case Cons(h,t) => Cons(h, append(t, a2))
-      }
+      foldRight(a1, a2)((a, b) => Cons(a, b))
 
     def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B =
       as match {
@@ -62,7 +59,7 @@ object Chapter3 {
     }
 
     def length[A](l: List[A]): Int = {
-      foldRight(l, 0)((_, b) => b + 1)
+      foldLeft(l, 0)((a, _) => a + 1)
     }
 
     @tailrec
@@ -78,6 +75,12 @@ object Chapter3 {
 
     def product(ns: List[Double]) =
       foldLeft(ns, 1.0)((b, a) => b * a)
+
+    def reverse[A](l: List[A]): List[A] = {
+      foldLeft(l, List[A]())((b, a) => Cons(a, b))
+    }
+
+    def concat[A](l: List[List[A]]): List[A] = ???
 
     def map[A, B](l: List[A])(f: A => B): List[B] = ???
   }

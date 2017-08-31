@@ -56,4 +56,20 @@ class Chapter3Suite extends FunSuite {
     val list = Chapter3.List(1.0, 2.0, 3.0, 4.0, 5.0)
     assert(Chapter3.List.product(list) == 120)
   }
+
+  test("reverse") {
+    val list = Chapter3.List(1, 2, 3, 4, 5)
+    assert(Chapter3.List.reverse(list) == Chapter3.List(5, 4, 3, 2, 1))
+  }
+
+  test("append") {
+    val list1 = Chapter3.List(1, 2)
+    val list2 = Chapter3.List(3, 4, 5)
+    assert(Chapter3.List.append(list1, list2) == Chapter3.List(1, 2, 3, 4, 5))
+  }
+
+  test("concat") {
+    val list = Chapter3.List(Chapter3.List(1, 2), Chapter3.List(3, 4, 5))
+    assert(Chapter3.List.concat(list) == Chapter3.List(1, 2, 3, 4, 5))
+  }
 }
