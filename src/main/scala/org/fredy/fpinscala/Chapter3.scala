@@ -86,6 +86,10 @@ object Chapter3 {
       foldLeft(l, List[A]())((b, a) => append(b, a))
     }
 
+    def add(l: List[Int]): List[Int] = {
+      foldRight(l, List[Int]())((a, b) => Cons(a + 1, b))
+    }
+
     def map[A, B](l: List[A])(f: A => B): List[B] = ???
   }
 }

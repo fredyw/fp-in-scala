@@ -72,4 +72,9 @@ class Chapter3Suite extends FunSuite {
     val list = Chapter3.List(Chapter3.List(1, 2), Chapter3.List(3), Chapter3.List(4, 5))
     assert(Chapter3.List.concat(list) == Chapter3.List(1, 2, 3, 4, 5))
   }
+
+  test("add") {
+    val list = Chapter3.List(1, 2, 3, 4, 5)
+    assert(Chapter3.List.add(list) == Chapter3.List(2, 3, 4, 5, 6))
+  }
 }
