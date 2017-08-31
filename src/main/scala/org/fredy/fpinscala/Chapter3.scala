@@ -90,6 +90,10 @@ object Chapter3 {
       foldRight(l, List[Int]())((a, b) => Cons(a + 1, b))
     }
 
+    def doubleToString(l: List[Double]): List[String] = {
+      foldRight(l, List[String]())((a, b) => Cons(a.toString, b))
+    }
+
     def map[A, B](l: List[A])(f: A => B): List[B] = ???
   }
 }
