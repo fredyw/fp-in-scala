@@ -41,4 +41,9 @@ class Chapter3Suite extends FunSuite {
     val list2 = Chapter3.List()
     assert(Chapter3.List.length(list2) == 0)
   }
+
+  test("foldLeft") {
+    val list = Chapter3.List(1, 2, 3, 4, 5)
+    assert(Chapter3.List.foldLeft(list, 0)((b, _) => b + 1) == 5)
+  }
 }
