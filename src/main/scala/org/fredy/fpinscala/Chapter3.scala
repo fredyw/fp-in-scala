@@ -70,17 +70,21 @@ object Chapter3 {
       }
     }
 
-    def sum(ns: List[Int]) =
+    def sum(ns: List[Int]) = {
       foldLeft(ns, 0)((b, a) => b + a)
+    }
 
-    def product(ns: List[Double]) =
+    def product(ns: List[Double]) = {
       foldLeft(ns, 1.0)((b, a) => b * a)
+    }
 
     def reverse[A](l: List[A]): List[A] = {
       foldLeft(l, List[A]())((b, a) => Cons(a, b))
     }
 
-    def concat[A](l: List[List[A]]): List[A] = ???
+    def concat[A](l: List[List[A]]): List[A] = {
+      foldLeft(l, List[A]())((b, a) => append(b, a))
+    }
 
     def map[A, B](l: List[A])(f: A => B): List[B] = ???
   }
