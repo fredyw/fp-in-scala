@@ -18,6 +18,12 @@ object Chapter3 {
         case Cons(h,t) => Cons(h, append(t, a2))
       }
 
+    def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B = // Utility functions
+      as match {
+        case Nil => z
+        case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+      }
+
     def tail[A](l: List[A]): List[A] = l match {
       case Nil => sys.error("tail of empty list")
       case Cons(_, xs) => xs
@@ -54,5 +60,13 @@ object Chapter3 {
       }
       f(l, List())
     }
+
+    def length[A](l: List[A]): Int = {
+      foldRight(l, 0)((_, b) => b + 1)
+    }
+
+    def foldLeft[A,B](l: List[A], z: B)(f: (B, A) => B): B = ???
+
+    def map[A,B](l: List[A])(f: A => B): List[B] = ???
   }
 }
