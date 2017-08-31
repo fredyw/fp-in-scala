@@ -46,4 +46,14 @@ class Chapter3Suite extends FunSuite {
     val list = Chapter3.List(1, 2, 3, 4, 5)
     assert(Chapter3.List.foldLeft(list, 0)((b, _) => b + 1) == 5)
   }
+
+  test("sum") {
+    val list = Chapter3.List(1, 2, 3, 4, 5)
+    assert(Chapter3.List.sum(list) == 15)
+  }
+
+  test("product") {
+    val list = Chapter3.List(1.0, 2.0, 3.0, 4.0, 5.0)
+    assert(Chapter3.List.product(list) == 120)
+  }
 }

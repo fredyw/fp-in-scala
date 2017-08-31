@@ -73,6 +73,12 @@ object Chapter3 {
       }
     }
 
+    def sum(ns: List[Int]) =
+      foldLeft(ns, 0)((b, a) => b + a)
+
+    def product(ns: List[Double]) =
+      foldLeft(ns, 1.0)((b, a) => b * a)
+
     def map[A, B](l: List[A])(f: A => B): List[B] = ???
   }
 }
