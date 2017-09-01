@@ -95,6 +95,6 @@ class Chapter3Suite extends FunSuite {
 
   test("filter") {
     val list = Chapter3.List(1, 2, 3, 4, 5)
-    assert(Chapter3.List.filter(list)(a => a % 2 == 0) == Chapter3.List(2, 4))
+    assert(Chapter3.List.filter(list)(a => a % 2 == 0) == Chapter3.List(1, 3, 5))
   }
 }
