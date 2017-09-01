@@ -101,6 +101,8 @@ object Chapter3 {
       foldRight(as, List[A]())((a, b) => if (f(a)) Cons(a, b) else b)
     }
 
-    def flatMap[A,B](as: List[A])(f: A => List[B]): List[B] = ???
+    def flatMap[A, B](as: List[A])(f: A => List[B]): List[B] = {
+      concat(map(as)(f))
+    }
   }
 }

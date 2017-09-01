@@ -97,4 +97,9 @@ class Chapter3Suite extends FunSuite {
     val list = Chapter3.List(1, 2, 3, 4, 5)
     assert(Chapter3.List.filter(list)(a => a % 2 == 0) == Chapter3.List(2, 4))
   }
+
+  test("flatMap") {
+    val list = Chapter3.List(1, 2, 3)
+    assert(Chapter3.List.flatMap(list)(i => Chapter3.List(i, i)) == Chapter3.List(1, 1, 2, 2, 3, 3))
+  }
 }
