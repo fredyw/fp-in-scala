@@ -104,5 +104,13 @@ object Chapter3 {
     def flatMap[A, B](as: List[A])(f: A => List[B]): List[B] = {
       concat(map(as)(f))
     }
+
+    def zipWith[A, B, C](a: List[A], b: List[B])(f: (A, B) => C): List[C] = {
+      (a, b) match {
+        case (Nil, _) => Nil
+        case (_, Nil) => Nil
+        case (Cons(x1, xs1), Cons(x2, xs2)) => Cons(f(x1, x2), zipWith(xs1, xs2)(f))
+      }
+    }
   }
 }

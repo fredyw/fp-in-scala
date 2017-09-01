@@ -102,4 +102,10 @@ class Chapter3Suite extends FunSuite {
     val list = Chapter3.List(1, 2, 3)
     assert(Chapter3.List.flatMap(list)(i => Chapter3.List(i, i)) == Chapter3.List(1, 1, 2, 2, 3, 3))
   }
+
+  test("zipWith") {
+    val list1 = Chapter3.List(1, 2, 3)
+    val list2 = Chapter3.List(4, 5, 6)
+    assert(Chapter3.List.zipWith(list1, list2)((a, b) => a + b) == Chapter3.List(5, 7, 9))
+  }
 }
