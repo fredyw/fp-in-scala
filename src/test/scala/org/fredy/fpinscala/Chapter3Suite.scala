@@ -108,4 +108,13 @@ class Chapter3Suite extends FunSuite {
     val list2 = Chapter3.List(4, 5, 6)
     assert(Chapter3.List.zipWith(list1, list2)((a, b) => a + b) == Chapter3.List(5, 7, 9))
   }
+
+  test("hasSubsequence") {
+    val list = Chapter3.List(1, 2, 3, 4)
+    assert(Chapter3.List.hasSubsequence(list, Chapter3.List(1, 2)) == true)
+    assert(Chapter3.List.hasSubsequence(list, Chapter3.List(2, 3)) == true)
+    assert(Chapter3.List.hasSubsequence(list, Chapter3.List(4)) == true)
+    assert(Chapter3.List.hasSubsequence(list, Chapter3.List(2, 1)) == false)
+    assert(Chapter3.List.hasSubsequence(list, Chapter3.List(5)) == false)
+  }
 }

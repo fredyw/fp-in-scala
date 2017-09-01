@@ -112,5 +112,7 @@ object Chapter3 {
         case (Cons(x1, xs1), Cons(x2, xs2)) => Cons(f(x1, x2), zipWith(xs1, xs2)(f))
       }
     }
+
+    def hasSubsequence[A](sup: List[A], sub: List[A]): Boolean = ???
   }
 }
