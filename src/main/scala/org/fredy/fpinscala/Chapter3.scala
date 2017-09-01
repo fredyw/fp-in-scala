@@ -97,7 +97,9 @@ object Chapter3 {
       foldRight(l, List[B]())((a, b) => Cons(f(a), b))
     }
 
-    def filter[A](as: List[A])(f: A => Boolean): List[A] = ???
+    def filter[A](as: List[A])(f: A => Boolean): List[A] = {
+      foldRight(as, List[A]())((a, b) => if (f(a)) b else Cons(a, b))
+    }
 
     def flatMap[A,B](as: List[A])(f: A => List[B]): List[B] = ???
   }
