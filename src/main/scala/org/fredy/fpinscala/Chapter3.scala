@@ -12,14 +12,13 @@ object Chapter3 {
       if (as.isEmpty) Nil
       else Cons(as.head, apply(as.tail: _*))
 
-    def append[A](a1: List[A], a2: List[A]): List[A] =
+    def append[A](a1: List[A], a2: List[A]): List[A] = {
       foldRight(a1, a2)((a, b) => Cons(a, b))
+    }
 
-    def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B =
-      as match {
-        case Nil => z
-        case Cons(x, xs) => f(x, foldRight(xs, z)(f))
-      }
+    def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B = {
+      foldLeft(reverse(as), z)((b, a) => f(a, b))
+    }
 
     def tail[A](l: List[A]): List[A] = l match {
       case Nil => sys.error("tail of empty list")
@@ -94,6 +93,8 @@ object Chapter3 {
       foldRight(l, List[String]())((a, b) => Cons(a.toString, b))
     }
 
-    def map[A, B](l: List[A])(f: A => B): List[B] = ???
+    def map[A, B](l: List[A])(f: A => B): List[B] = {
+      foldRight(l, List[B]())((a, b) => Cons(f(a), b))
+    }
   }
 }

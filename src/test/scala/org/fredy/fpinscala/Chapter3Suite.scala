@@ -47,6 +47,11 @@ class Chapter3Suite extends FunSuite {
     assert(Chapter3.List.foldLeft(list, 0)((b, _) => b + 1) == 5)
   }
 
+  test("foldRight") {
+    val list = Chapter3.List(1, 2, 3, 4, 5)
+    assert(Chapter3.List.foldRight(list, 0)((a, _) => a + 1) == 5)
+  }
+
   test("sum") {
     val list = Chapter3.List(1, 2, 3, 4, 5)
     assert(Chapter3.List.sum(list) == 15)
@@ -81,5 +86,10 @@ class Chapter3Suite extends FunSuite {
   test("doubleToString") {
     val list = Chapter3.List(1.0, 2.0, 3.0, 4.0, 5.0)
     assert(Chapter3.List.doubleToString(list) == Chapter3.List("1.0", "2.0", "3.0", "4.0", "5.0"))
+  }
+
+  test("map") {
+    val list = Chapter3.List(1, 2, 3, 4, 5)
+    assert(Chapter3.List.map(list)(a => a * 2) == Chapter3.List(2, 4, 6, 8, 10))
   }
 }
