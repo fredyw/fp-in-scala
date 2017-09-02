@@ -113,6 +113,28 @@ object Chapter3 {
       }
     }
 
-    def hasSubsequence[A](sup: List[A], sub: List[A]): Boolean = ???
+    def startsWith[A](a: List[A], b: List[A]): Boolean = {
+      (a, b) match {
+        case (_, Nil) => true
+        case (Cons(x1, xs1), Cons(x2, xs2)) => if (x1 == x2) startsWith(xs1, xs2) else false
+        case (_) => false
+      }
+    }
+
+    def hasSubsequence[A](sup: List[A], sub: List[A]): Boolean = {
+      def f(a: List[A], b: List[A]): Boolean = {
+        (a, b) match {
+          case (_, Nil) => true
+          case (Cons(x1, xs1), Cons(x2, xs2)) => if (x1 == x2) f(xs1, xs2) else false
+          case (_) => false
+        }
+      }
+
+      (sup, sub) match {
+        case (_, Nil) => true
+        case (Cons(x1, xs1), Cons(x2, xs2)) => if (x1 == x2) f(xs1, xs2) else hasSubsequence(xs1, sub)
+        case (_) => false
+      }
+    }
   }
 }
