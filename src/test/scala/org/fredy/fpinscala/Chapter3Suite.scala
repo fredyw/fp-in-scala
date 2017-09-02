@@ -117,4 +117,9 @@ class Chapter3Suite extends FunSuite {
     assert(Chapter3.List.hasSubsequence(list, Chapter3.List(2, 1)) == false)
     assert(Chapter3.List.hasSubsequence(list, Chapter3.List(5)) == false)
   }
+
+  test("size") {
+    val tree = Chapter3.Branch(Chapter3.Leaf(1), Chapter3.Branch(Chapter3.Leaf(2), Chapter3.Leaf(3)))
+    assert(Chapter3.Tree.size(tree) == 5)
+  }
 }
