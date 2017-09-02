@@ -163,5 +163,12 @@ object Chapter3 {
         case (Branch(left, right)) => 1 + depth(left).max(depth(right))
       }
     }
+
+    def map[A, B](t: Tree[A])(f: A => B): Tree[B] = {
+      t match {
+        case Leaf(a) => Leaf(f(a))
+        case (Branch(left, right)) => Branch(map(left)(f), map(right)(f))
+      }
+    }
   }
 }
