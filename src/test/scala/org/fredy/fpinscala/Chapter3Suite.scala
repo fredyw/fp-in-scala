@@ -138,4 +138,8 @@ class Chapter3Suite extends FunSuite {
     val expected = Chapter3.Branch(Chapter3.Leaf(6), Chapter3.Branch(Chapter3.Leaf(3), Chapter3.Leaf(4)))
     assert(Chapter3.Tree.map(tree)(a => a + 1) == expected)
   }
+
+  test("Tree.fold") {
+    
+  }
 }

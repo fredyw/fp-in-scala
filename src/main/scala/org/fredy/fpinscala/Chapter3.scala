@@ -170,5 +170,7 @@ object Chapter3 {
         case (Branch(left, right)) => Branch(map(left)(f), map(right)(f))
       }
     }
+
+    def fold[A, B](t: Tree[A])(f: A => B)(g: (B, B) => B): B = ???
   }
 }
