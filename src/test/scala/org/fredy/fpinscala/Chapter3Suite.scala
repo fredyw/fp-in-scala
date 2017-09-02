@@ -122,4 +122,9 @@ class Chapter3Suite extends FunSuite {
     val tree = Chapter3.Branch(Chapter3.Leaf(1), Chapter3.Branch(Chapter3.Leaf(2), Chapter3.Leaf(3)))
     assert(Chapter3.Tree.size(tree) == 5)
   }
+
+  test("maximum") {
+    val tree = Chapter3.Branch(Chapter3.Leaf(5), Chapter3.Branch(Chapter3.Leaf(2), Chapter3.Leaf(3)))
+    assert(Chapter3.Tree.maximum(tree) == 5)
+  }
 }
