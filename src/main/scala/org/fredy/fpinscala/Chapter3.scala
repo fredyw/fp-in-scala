@@ -171,6 +171,11 @@ object Chapter3 {
       }
     }
 
-    def fold[A, B](t: Tree[A])(f: A => B)(g: (B, B) => B): B = ???
+    def fold[A, B](t: Tree[A])(f: A => B)(g: (B, B) => B): B = {
+      t match {
+        case Leaf(a) => f(a)
+        case (Branch(left, right)) => g(fold(left)(f)(g), fold(right)(f)(g))
+      }
+    }
   }
 }

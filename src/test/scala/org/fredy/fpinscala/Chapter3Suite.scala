@@ -140,6 +140,7 @@ class Chapter3Suite extends FunSuite {
   }
 
   test("Tree.fold") {
-    
+    val tree = Chapter3.Branch(Chapter3.Leaf(5), Chapter3.Branch(Chapter3.Leaf(2), Chapter3.Leaf(3)))
+    assert(Chapter3.Tree.fold(tree)(a => a)((a, b) => a.max(b)) == 5)
   }
 }
