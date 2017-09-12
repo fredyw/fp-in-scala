@@ -23,7 +23,12 @@ object Chapter4 {
       map(f).getOrElse(None)
     }
 
-    def orElse[B >: A](ob: => Option[B]): Option[B] = ???
+    def orElse[B >: A](ob: => Option[B]): Option[B] = {
+      this match {
+        case Some(a) => Some(a)
+        case None => ob
+      }
+    }
 
     def filter(f: A => Boolean): Option[A] = ???
   }
