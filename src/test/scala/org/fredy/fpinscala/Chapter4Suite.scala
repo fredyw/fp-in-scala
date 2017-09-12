@@ -21,4 +21,9 @@ class Chapter4Suite extends FunSuite {
     assert(Chapter4.Some("Hello") == Chapter4.Some("Hello").orElse(Chapter4.Some("Bye")))
     assert(Chapter4.Some("Bye") == Chapter4.None.orElse(Chapter4.Some("Bye")))
   }
+
+  test("Option.filter") {
+    assert(Chapter4.Some(1) == Chapter4.Some(1).filter(a => a == 1))
+    assert(Chapter4.None == Chapter4.None.filter(a => a == 1))
+  }
 }
