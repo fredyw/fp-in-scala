@@ -19,7 +19,9 @@ object Chapter4 {
       }
     }
 
-    def flatMap[B](f: A => Option[B]): Option[B] = ???
+    def flatMap[B](f: A => Option[B]): Option[B] = {
+      map(f).getOrElse(None)
+    }
 
     def orElse[B >: A](ob: => Option[B]): Option[B] = ???
 
