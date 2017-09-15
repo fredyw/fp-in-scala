@@ -37,6 +37,7 @@ class Chapter4Suite extends FunSuite {
   }
 
   test("sequence") {
-    // TODO
+    assert(Chapter4.Some(List(1, 2)) == Chapter4.sequence(List(Chapter4.Some(1), Chapter4.Some(2))))
+    assert(Chapter4.None == Chapter4.sequence(List(Chapter4.None, Chapter4.Some(2))))
   }
 }
