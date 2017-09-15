@@ -31,4 +31,8 @@ class Chapter4Suite extends FunSuite {
     assert(Chapter4.Some(2.0) == Chapter4.variance(List(1, 2, 3, 4, 5)))
     assert(Chapter4.None == Chapter4.variance(List()))
   }
+
+  test("map2") {
+    // TODO
+  }
 }
