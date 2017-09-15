@@ -55,4 +55,6 @@ object Chapter4 {
       case (x :: xs) => x.flatMap(xx => sequence(xs).map(y => xx :: y))
     }
   }
+
+  def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = ???
 }
