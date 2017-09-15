@@ -26,4 +26,9 @@ class Chapter4Suite extends FunSuite {
     assert(Chapter4.Some(1) == Chapter4.Some(1).filter(a => a == 1))
     assert(Chapter4.None == Chapter4.None.filter(a => a == 1))
   }
+
+  test("variance") {
+    assert(Chapter4.Some(2.0) == Chapter4.variance(List(1, 2, 3, 4, 5)))
+    assert(Chapter4.None == Chapter4.variance(List()))
+  }
 }
