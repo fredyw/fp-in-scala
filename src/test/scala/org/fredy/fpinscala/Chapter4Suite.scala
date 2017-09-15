@@ -35,4 +35,8 @@ class Chapter4Suite extends FunSuite {
   test("map2") {
     assert(Chapter4.Some(3) == Chapter4.map2(Chapter4.Some(1), Chapter4.Some(2))((x, y) => x + y))
   }
+
+  test("sequence") {
+    // TODO
+  }
 }
