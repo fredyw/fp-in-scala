@@ -1,7 +1,5 @@
 package org.fredy.fpinscala
 
-import scala.annotation.tailrec
-
 object Chapter4 {
   // hide std library `Option`, `Some` and `Either`, since we are writing our own in this chapter
   import scala.{Either => _, Option => _, Some => _}
@@ -52,14 +50,9 @@ object Chapter4 {
   }
 
   def sequence[A](a: List[Option[A]]): Option[List[A]] = {
-    @tailrec
-    def f(a: List[Option[A]], accu: List[A]): Option[List[A]] = {
-      a match {
-        case (None :: _) => None
-        case (Some(x) :: xs) => f(xs, x :: accu)
-        case Nil => Some(accu.reverse)
-      }
+    a match {
+      case Nil => Some(Nil)
+      case (x :: xs) => x.flatMap(xx => sequence(xs).map(y => xx :: y))
     }
-    f(a, List())
   }
 }
