@@ -56,5 +56,10 @@ object Chapter4 {
     }
   }
 
-  def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = ???
+  def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = {
+    a match {
+      case Nil => Some(Nil)
+      case (x :: xs) => ??? // x.flatMap(xx => traverse(xs)(f).map(y => f(xx) :: y))
+    }
+  }
 }
