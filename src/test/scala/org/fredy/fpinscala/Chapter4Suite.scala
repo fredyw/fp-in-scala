@@ -28,22 +28,22 @@ class Chapter4Suite extends FunSuite {
   }
 
   test("Option.variance") {
-    assert(Chapter4.Some(2.0) == Chapter4.variance(List(1, 2, 3, 4, 5)))
-    assert(Chapter4.None == Chapter4.variance(List()))
+    assert(Chapter4.Some(2.0) == Chapter4.Option.variance(List(1, 2, 3, 4, 5)))
+    assert(Chapter4.None == Chapter4.Option.variance(List()))
   }
 
   test("Option.map2") {
-    assert(Chapter4.Some(3) == Chapter4.map2(Chapter4.Some(1), Chapter4.Some(2))((x, y) => x + y))
+    assert(Chapter4.Some(3) == Chapter4.Option.map2(Chapter4.Some(1), Chapter4.Some(2))((x, y) => x + y))
   }
 
   test("Option.sequence") {
-    assert(Chapter4.Some(List(1, 2)) == Chapter4.sequence(List(Chapter4.Some(1), Chapter4.Some(2))))
-    assert(Chapter4.None == Chapter4.sequence(List(Chapter4.None, Chapter4.Some(2))))
+    assert(Chapter4.Some(List(1, 2)) == Chapter4.Option.sequence(List(Chapter4.Some(1), Chapter4.Some(2))))
+    assert(Chapter4.None == Chapter4.Option.sequence(List(Chapter4.None, Chapter4.Some(2))))
   }
 
   test("Option.traverse") {
-    assert(Chapter4.Some(List(1, 2)) == Chapter4.traverse(List(1, 2))(a => Chapter4.Some(a)))
-    assert(Chapter4.None == Chapter4.traverse(List(1, 2))(a => Chapter4.None))
+    assert(Chapter4.Some(List(1, 2)) == Chapter4.Option.traverse(List(1, 2))(a => Chapter4.Some(a)))
+    assert(Chapter4.None == Chapter4.Option.traverse(List(1, 2))(a => Chapter4.None))
   }
 
   test("Either.map") {
@@ -64,5 +64,13 @@ class Chapter4Suite extends FunSuite {
 
   test("Either.map2") {
     assert(Chapter4.Right(3) == Chapter4.Right(1).map2(Chapter4.Right(2))((a, b) => a + b))
+  }
+
+  test("Either.sequence") {
+    // TODO
+  }
+
+  test("Either.traverse") {
+    // TODO
   }
 }
