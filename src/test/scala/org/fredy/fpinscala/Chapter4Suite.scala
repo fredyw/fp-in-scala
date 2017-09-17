@@ -52,7 +52,9 @@ class Chapter4Suite extends FunSuite {
   }
 
   test("Either.flatMap") {
-    // TODO
+    assert(Chapter4.Right(2) == Chapter4.Right(1).flatMap((a) => Chapter4.Right(a + 1)))
+    assert(Chapter4.Left(1) == Chapter4.Left(1).flatMap((a) => Chapter4.Left(a)))
+    assert(Chapter4.Left(1) == Chapter4.Right(1).flatMap((a) => Chapter4.Left(a)))
   }
 
   test("Either.orElse") {
