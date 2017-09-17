@@ -27,22 +27,38 @@ class Chapter4Suite extends FunSuite {
     assert(Chapter4.None == Chapter4.None.filter(a => a == 1))
   }
 
-  test("variance") {
+  test("Option.variance") {
     assert(Chapter4.Some(2.0) == Chapter4.variance(List(1, 2, 3, 4, 5)))
     assert(Chapter4.None == Chapter4.variance(List()))
   }
 
-  test("map2") {
+  test("Option.map2") {
     assert(Chapter4.Some(3) == Chapter4.map2(Chapter4.Some(1), Chapter4.Some(2))((x, y) => x + y))
   }
 
-  test("sequence") {
+  test("Option.sequence") {
     assert(Chapter4.Some(List(1, 2)) == Chapter4.sequence(List(Chapter4.Some(1), Chapter4.Some(2))))
     assert(Chapter4.None == Chapter4.sequence(List(Chapter4.None, Chapter4.Some(2))))
   }
 
-  test("traverse") {
+  test("Option.traverse") {
     assert(Chapter4.Some(List(1, 2)) == Chapter4.traverse(List(1, 2))(a => Chapter4.Some(a)))
     assert(Chapter4.None == Chapter4.traverse(List(1, 2))(a => Chapter4.None))
+  }
+
+  test("Either.map") {
+    // TODO
+  }
+
+  test("Either.flatMap") {
+    // TODO
+  }
+
+  test("Either.orElse") {
+    // TODO
+  }
+
+  test("Either.map2") {
+    // TODO
   }
 }
