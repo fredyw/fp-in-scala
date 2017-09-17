@@ -63,6 +63,6 @@ class Chapter4Suite extends FunSuite {
   }
 
   test("Either.map2") {
-    // TODO
+    assert(Chapter4.Right(3) == Chapter4.Right(1).map2(Chapter4.Right(2))((a, b) => a + b))
   }
 }
