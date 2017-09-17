@@ -42,6 +42,7 @@ class Chapter4Suite extends FunSuite {
   }
 
   test("traverse") {
-    // TODO
+    assert(Chapter4.Some(List(1, 2)) == Chapter4.traverse(List(1, 2))(a => Chapter4.Some(a)))
+    assert(Chapter4.None == Chapter4.traverse(List(1, 2))(a => Chapter4.None))
   }
 }
