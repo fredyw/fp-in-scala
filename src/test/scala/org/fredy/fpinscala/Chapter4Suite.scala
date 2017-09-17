@@ -58,7 +58,8 @@ class Chapter4Suite extends FunSuite {
   }
 
   test("Either.orElse") {
-    // TODO
+    assert(Chapter4.Right(1) == Chapter4.Right(1).orElse(Chapter4.Left(100)))
+    assert(Chapter4.Left(100) == Chapter4.Left(1).orElse(Chapter4.Left(100)))
   }
 
   test("Either.map2") {
