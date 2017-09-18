@@ -95,8 +95,18 @@ object Chapter4 {
   case class Right[+A](value: A) extends Either[Nothing, A]
 
   object Either {
-    def sequence[E, A](es: List[Either[E, A]]): Either[E, List[A]] = ???
+    def sequence[E, A](es: List[Either[E, A]]): Either[E, List[A]] = {
+      es match {
+        case Nil => Right(Nil)
+        case (x :: xs) => x.flatMap(xx => sequence(xs).map(y => xx :: y))
+      }
+    }
 
-    def traverse[E, A, B](as: List[A])(f: A => Either[E, B]): Either[E, List[B]] = ???
+    def traverse[E, A, B](es: List[A])(f: A => Either[E, B]): Either[E, List[B]] = {
+      es match {
+        case Nil => Right(Nil)
+        case (x :: xs) => f(x).flatMap(xx => traverse(xs)(f).map(y => xx :: y))
+      }
+    }
   }
 }
