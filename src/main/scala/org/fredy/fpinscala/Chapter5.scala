@@ -1,8 +1,19 @@
 package org.fredy.fpinscala
 
+import scala.annotation.tailrec
+
 object Chapter5 {
   trait Stream[+A] {
-    def toList: List[A] = ???
+    def toList: List[A] = {
+      @tailrec
+      def f(s: Stream[A], accu: List[A]): List[A] = {
+        s match {
+          case Empty => accu
+          case Cons(h, t) => f(t(), h() :: accu)
+        }
+      }
+      f(this, List()).reverse
+    }
 
     def take(n: Int): Stream[A] = ???
 
