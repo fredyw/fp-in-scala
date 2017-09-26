@@ -33,4 +33,21 @@ class Chapter5Suite extends FunSuite {
         () => 2, () => Chapter5.Cons(
           () => 3, () => Chapter5.Empty))).drop(5).toList)
   }
+
+  test("Stream.takeWhile") {
+    assert(List(1, 2) == Chapter5.Cons(
+      () => 1, () => Chapter5.Cons(
+        () => 2, () => Chapter5.Cons(
+          () => 3, () => Chapter5.Empty))).takeWhile(a => a < 3).toList)
+
+    assert(List(1, 2, 3) == Chapter5.Cons(
+      () => 1, () => Chapter5.Cons(
+        () => 2, () => Chapter5.Cons(
+          () => 3, () => Chapter5.Empty))).takeWhile(a => a < 5).toList)
+
+    assert(List() == Chapter5.Cons(
+      () => 1, () => Chapter5.Cons(
+        () => 2, () => Chapter5.Cons(
+          () => 3, () => Chapter5.Empty))).takeWhile(a => a < 0).toList)
+  }
 }
