@@ -15,9 +15,21 @@ object Chapter5 {
       f(this, List()).reverse
     }
 
-    def take(n: Int): Stream[A] = ???
+    def take(n: Int): Stream[A] = {
+      this match {
+        case Empty => Stream.empty
+        case Cons(h, t) if (n > 1) => Stream.cons(h(), t().take(n - 1))
+        case Cons(h, _) if (n == 1) => Stream.cons(h(), Stream.empty)
+      }
+    }
 
-    def drop(n: Int): Stream[A] = ???
+    def drop(n: Int): Stream[A] = {
+      this match {
+        case Empty => Stream.empty
+        case Cons(_, t) if (n > 1) => t().drop(n - 1)
+        case Cons(_, t) if (n == 1) => t()
+      }
+    }
 
     def takeWhile(p: A => Boolean): Stream[A] = ???
   }
