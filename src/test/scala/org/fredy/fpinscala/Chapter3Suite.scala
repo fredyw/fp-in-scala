@@ -5,33 +5,33 @@ import org.scalatest.FunSuite
 class Chapter3Suite extends FunSuite {
   test("List.tail") {
     val list = Chapter3.List.tail(Chapter3.List(1, 2, 3, 4, 5))
-    assert(Chapter3.List(2, 3, 4, 5) == list)
+    assert(list == Chapter3.List(2, 3, 4, 5))
   }
 
   test("List.setHead") {
     val list = Chapter3.List.setHead(Chapter3.List(1, 2, 3, 4, 5), 10)
-    assert(Chapter3.List(10, 2, 3, 4, 5) == list)
+    assert(list == Chapter3.List(10, 2, 3, 4, 5))
   }
 
   test("List.drop") {
     val list = Chapter3.List.drop(Chapter3.List(1, 2, 3, 4, 5), 2)
-    assert(Chapter3.List(3, 4, 5) == list)
+    assert(list == Chapter3.List(3, 4, 5))
   }
 
   test("List.dropWhile") {
     val list1 = Chapter3.List.dropWhile(Chapter3.List(1, 2, 3, 4, 5), (x: Int) => x < 3)
-    assert(Chapter3.List(3, 4, 5) == list1)
+    assert(list1 == Chapter3.List(3, 4, 5))
 
     val list2 = Chapter3.List.dropWhile(Chapter3.List(1, 2, 3, 4, 5), (x: Int) => x <= 3)
-    assert(Chapter3.List(4, 5) == list2)
+    assert(list2 == Chapter3.List(4, 5))
   }
 
   test("List.init") {
     val list1 = Chapter3.List.init(Chapter3.List(1, 2, 3, 4, 5))
-    assert(Chapter3.List(1, 2, 3, 4) == list1)
+    assert(list1 == Chapter3.List(1, 2, 3, 4))
 
     val list2 = Chapter3.List.init(Chapter3.List(1, 2))
-    assert(Chapter3.List(1) == list2)
+    assert(list2 == Chapter3.List(1))
   }
 
   test("List.length") {

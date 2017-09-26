@@ -4,50 +4,50 @@ import org.scalatest.FunSuite
 
 class Chapter5Suite extends FunSuite {
   test("Stream.toList") {
-    assert(List(1, 2, 3) == Chapter5.Cons(
+    assert(Chapter5.Cons(
       () => 1, () => Chapter5.Cons(
         () => 2, () => Chapter5.Cons(
-          () => 3, () => Chapter5.Empty))).toList)
+          () => 3, () => Chapter5.Empty))).toList == List(1, 2, 3))
   }
 
   test("Stream.take") {
-    assert(List(1, 2) == Chapter5.Cons(
+    assert(Chapter5.Cons(
       () => 1, () => Chapter5.Cons(
         () => 2, () => Chapter5.Cons(
-          () => 3, () => Chapter5.Empty))).take(2).toList)
+          () => 3, () => Chapter5.Empty))).take(2).toList == List(1, 2))
 
-    assert(List(1, 2, 3) == Chapter5.Cons(
+    assert(Chapter5.Cons(
       () => 1, () => Chapter5.Cons(
         () => 2, () => Chapter5.Cons(
-          () => 3, () => Chapter5.Empty))).take(5).toList)
+          () => 3, () => Chapter5.Empty))).take(5).toList == List(1, 2, 3))
   }
 
   test("Stream.drop") {
-    assert(List(2, 3) == Chapter5.Cons(
+    assert(Chapter5.Cons(
       () => 1, () => Chapter5.Cons(
         () => 2, () => Chapter5.Cons(
-          () => 3, () => Chapter5.Empty))).drop(1).toList)
+          () => 3, () => Chapter5.Empty))).drop(1).toList == List(2, 3))
 
-    assert(List() == Chapter5.Cons(
+    assert(Chapter5.Cons(
       () => 1, () => Chapter5.Cons(
         () => 2, () => Chapter5.Cons(
-          () => 3, () => Chapter5.Empty))).drop(5).toList)
+          () => 3, () => Chapter5.Empty))).drop(5).toList == List())
   }
 
   test("Stream.takeWhile") {
-    assert(List(1, 2) == Chapter5.Cons(
+    assert(Chapter5.Cons(
       () => 1, () => Chapter5.Cons(
         () => 2, () => Chapter5.Cons(
-          () => 3, () => Chapter5.Empty))).takeWhile(a => a < 3).toList)
+          () => 3, () => Chapter5.Empty))).takeWhile(a => a < 3).toList == List(1, 2))
 
-    assert(List(1, 2, 3) == Chapter5.Cons(
+    assert(Chapter5.Cons(
       () => 1, () => Chapter5.Cons(
         () => 2, () => Chapter5.Cons(
-          () => 3, () => Chapter5.Empty))).takeWhile(a => a < 5).toList)
+          () => 3, () => Chapter5.Empty))).takeWhile(a => a < 5).toList == List(1, 2, 3))
 
-    assert(List() == Chapter5.Cons(
+    assert(Chapter5.Cons(
       () => 1, () => Chapter5.Cons(
         () => 2, () => Chapter5.Cons(
-          () => 3, () => Chapter5.Empty))).takeWhile(a => a < 0).toList)
+          () => 3, () => Chapter5.Empty))).takeWhile(a => a < 0).toList == List())
   }
 }
