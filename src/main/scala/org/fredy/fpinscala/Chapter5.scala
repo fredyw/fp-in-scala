@@ -43,10 +43,7 @@ object Chapter5 {
     }
 
     def takeWhile(p: A => Boolean): Stream[A] = {
-      this match {
-        case Cons(h, t) if p(h()) => Stream.cons(h(), t().takeWhile(p))
-        case _ => Stream.empty
-      }
+      foldRight(Stream.empty[A])((a, b) => if (p(a)) Stream.cons(a, b) else Stream.empty)
     }
 
     def forAll(p: A => Boolean): Boolean = {
