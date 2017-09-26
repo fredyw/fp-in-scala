@@ -50,4 +50,16 @@ class Chapter5Suite extends FunSuite {
         () => 2, () => Chapter5.Cons(
           () => 3, () => Chapter5.Empty))).takeWhile(a => a < 0).toList == List())
   }
+
+  test("Stream.forAll") {
+    assert(Chapter5.Cons(
+      () => 1, () => Chapter5.Cons(
+        () => 2, () => Chapter5.Cons(
+          () => 3, () => Chapter5.Empty))).forAll(a => a < 5) == true)
+
+    assert(Chapter5.Cons(
+      () => 1, () => Chapter5.Cons(
+        () => 2, () => Chapter5.Cons(
+          () => 3, () => Chapter5.Empty))).forAll(a => a < 3) == false)
+  }
 }
