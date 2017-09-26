@@ -4,6 +4,17 @@ import scala.annotation.tailrec
 
 object Chapter5 {
   trait Stream[+A] {
+    def foldRight[B](z: => B)(f: (A, => B) => B): B = {
+      this match {
+        case Cons(h, t) => f(h(), t().foldRight(z)(f))
+        case _ => z
+      }
+    }
+
+    def exists(p: A => Boolean): Boolean = {
+      foldRight(false)((a, b) => p(a) || b)
+    }
+
     def toList: List[A] = {
       @tailrec
       def f(s: Stream[A], accu: List[A]): List[A] = {
@@ -37,6 +48,10 @@ object Chapter5 {
         case _ => Stream.empty
       }
     }
+
+    def forAll(p: A => Boolean): Boolean = ???
+
+    def headOption: Option[A] = ???
   }
 
   case object Empty extends Stream[Nothing]
