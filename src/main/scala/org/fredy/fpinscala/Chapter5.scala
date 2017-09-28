@@ -62,7 +62,9 @@ object Chapter5 {
       foldRight(Stream.empty[A])((h, t) => if (f(h)) Stream.cons(h, t) else t)
     }
 
-    def append[B>:A](s: => Stream[B]): Stream[B] = ???
+    def append[B >: A](s: => Stream[B]): Stream[B] = {
+      foldRight(s)((h, t) => Stream.cons(h, t))
+    }
 
     def flatMap[B](f: A => Stream[B]): Stream[B] = ???
   }
