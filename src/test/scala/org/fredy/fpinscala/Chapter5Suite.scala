@@ -62,4 +62,13 @@ class Chapter5Suite extends FunSuite {
         () => 2, () => Chapter5.Cons(
           () => 3, () => Chapter5.Empty))).forAll(a => a < 3) == false)
   }
+
+  test("Stream.headOption") {
+    assert(Chapter5.Cons(
+      () => 1, () => Chapter5.Cons(
+        () => 2, () => Chapter5.Cons(
+          () => 3, () => Chapter5.Empty))).headOption == Some(1))
+
+    assert(Chapter5.Empty.headOption == None)
+  }
 }

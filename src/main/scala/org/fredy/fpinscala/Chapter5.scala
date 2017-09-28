@@ -50,7 +50,9 @@ object Chapter5 {
       foldRight(true)((a, b) => p(a) && b)
     }
 
-    def headOption: Option[A] = ???
+    def headOption: Option[A] = {
+      foldRight(None: Option[A])((a, _) => Some(a))
+    }
   }
 
   case object Empty extends Stream[Nothing]
