@@ -53,6 +53,14 @@ object Chapter5 {
     def headOption: Option[A] = {
       foldRight(None: Option[A])((a, _) => Some(a))
     }
+
+    def map[B](f: A => B): Stream[B] = ???
+
+    def filter(f: A => Boolean): Stream[A] = ???
+
+    def append[B>:A](s: => Stream[B]): Stream[B] = ???
+
+    def flatMap[B](f: A => Stream[B]): Stream[B] = ???
   }
 
   case object Empty extends Stream[Nothing]
