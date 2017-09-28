@@ -43,18 +43,20 @@ object Chapter5 {
     }
 
     def takeWhile(p: A => Boolean): Stream[A] = {
-      foldRight(Stream.empty[A])((a, b) => if (p(a)) Stream.cons(a, b) else Stream.empty)
+      foldRight(Stream.empty[A])((h, t) => if (p(h)) Stream.cons(h, t) else Stream.empty)
     }
 
     def forAll(p: A => Boolean): Boolean = {
-      foldRight(true)((a, b) => p(a) && b)
+      foldRight(true)((h, t) => p(h) && t)
     }
 
     def headOption: Option[A] = {
-      foldRight(None: Option[A])((a, _) => Some(a))
+      foldRight(None: Option[A])((h, _) => Some(h))
     }
 
-    def map[B](f: A => B): Stream[B] = ???
+    def map[B](f: A => B): Stream[B] = {
+      foldRight(Stream.empty[B])((h, t) => Stream.cons(f(h), t))
+    }
 
     def filter(f: A => Boolean): Stream[A] = ???
 
