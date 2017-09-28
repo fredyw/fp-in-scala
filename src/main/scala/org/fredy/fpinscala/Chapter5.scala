@@ -58,7 +58,9 @@ object Chapter5 {
       foldRight(Stream.empty[B])((h, t) => Stream.cons(f(h), t))
     }
 
-    def filter(f: A => Boolean): Stream[A] = ???
+    def filter(f: A => Boolean): Stream[A] = {
+      foldRight(Stream.empty[A])((h, t) => if (f(h)) Stream.cons(h, t) else t)
+    }
 
     def append[B>:A](s: => Stream[B]): Stream[B] = ???
 

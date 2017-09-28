@@ -78,4 +78,11 @@ class Chapter5Suite extends FunSuite {
         () => 2, () => Chapter5.Cons(
           () => 3, () => Chapter5.Empty))).map(a => a + 1).toList == List(2, 3, 4))
   }
+
+  test("Stream.filter") {
+    assert(Chapter5.Cons(
+      () => 1, () => Chapter5.Cons(
+        () => 2, () => Chapter5.Cons(
+          () => 3, () => Chapter5.Empty))).map(a => a % 2 == 0).toList == List(2))
+  }
 }
