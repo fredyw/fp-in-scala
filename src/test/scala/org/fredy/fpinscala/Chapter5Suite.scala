@@ -44,4 +44,8 @@ class Chapter5Suite extends FunSuite {
   test("Stream.append") {
     assert(Chapter5.Stream(1, 2).append(Chapter5.Stream(3, 4)).toList == List(1, 2, 3, 4))
   }
+
+  test("Stream.flatMap") {
+    Chapter5.Stream(1, 2, 3).flatMap(a => Chapter5.Stream(a + 1)).toList == List(2, 3, 4)
+  }
 }
