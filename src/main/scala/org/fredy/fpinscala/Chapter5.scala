@@ -94,11 +94,8 @@ object Chapter5 {
 
     def from(n: Int): Stream[Int] = unfold(n)(a => Some(a, a + 1))
 
-    def fibs(): Stream[Int] = {
-      def f(i: Int, j: Int): Stream[Int] = {
-        cons(i, f(j, i + j))
-      }
-      f(0, 1)
+    def fibs(): Stream[Int] = unfold((0, 1)) {
+      case (a, b) => Some(a, (b, a + b))
     }
 
     def unfold[A, S](z: S)(f: S => Option[(A, S)]): Stream[A] = {
