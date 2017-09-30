@@ -56,4 +56,8 @@ class Chapter5Suite extends FunSuite {
   test("Stream.from") {
     assert(Chapter5.Stream.from(1).take(3).toList == List(1, 2, 3))
   }
+
+  test("Stream.fibs") {
+    assert(Chapter5.Stream.fibs().take(7).toList == List(0, 1, 1, 2, 3, 5, 8))
+  }
 }

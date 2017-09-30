@@ -91,5 +91,12 @@ object Chapter5 {
     def constant[A](a: A): Stream[A] = cons(a, constant(a))
 
     def from(n: Int): Stream[Int] = cons(n, from(n + 1))
+
+    def fibs(): Stream[Int] = {
+      def f(i: Int, j: Int): Stream[Int] = {
+        cons(i, f(j, i + j))
+      }
+      f(0, 1)
+    }
   }
 }
