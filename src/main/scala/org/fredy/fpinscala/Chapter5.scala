@@ -98,5 +98,7 @@ object Chapter5 {
       }
       f(0, 1)
     }
+
+    def unfold[A, S](z: S)(f: S => Option[(A, S)]): Stream[A] = ???
   }
 }
