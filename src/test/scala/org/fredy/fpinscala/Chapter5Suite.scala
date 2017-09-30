@@ -52,4 +52,8 @@ class Chapter5Suite extends FunSuite {
   test("Stream.constant") {
     assert(Chapter5.Stream.constant(1).take(3).toList == List(1, 1, 1))
   }
+
+  test("Stream.from") {
+    assert(Chapter5.Stream.from(1).take(3).toList == List(1, 2, 3))
+  }
 }
