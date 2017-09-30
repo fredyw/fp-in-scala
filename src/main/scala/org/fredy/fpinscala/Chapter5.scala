@@ -99,6 +99,11 @@ object Chapter5 {
       f(0, 1)
     }
 
-    def unfold[A, S](z: S)(f: S => Option[(A, S)]): Stream[A] = ???
+    def unfold[A, S](z: S)(f: S => Option[(A, S)]): Stream[A] = {
+      f(z) match {
+        case None => empty
+        case Some((a, s)) => cons(a, unfold(s)(f))
+      }
+    }
   }
 }
