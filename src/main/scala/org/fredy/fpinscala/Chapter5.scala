@@ -88,7 +88,7 @@ object Chapter5 {
       else cons(as.head, apply(as.tail: _*))
     }
 
-    def constant[A](a: A): Stream[A] = ???
+    def constant[A](a: A): Stream[A] = cons(a, constant(a))
 
     def from(n: Int): Stream[Int] = ???
   }
