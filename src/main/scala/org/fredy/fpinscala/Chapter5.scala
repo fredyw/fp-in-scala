@@ -83,8 +83,13 @@ object Chapter5 {
 
     def empty[A]: Stream[A] = Empty
 
-    def apply[A](as: A*): Stream[A] =
+    def apply[A](as: A*): Stream[A] = {
       if (as.isEmpty) empty
       else cons(as.head, apply(as.tail: _*))
+    }
+
+    def constant[A](a: A): Stream[A] = ???
+
+    def from(n: Int): Stream[Int] = ???
   }
 }
