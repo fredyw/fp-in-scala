@@ -91,7 +91,9 @@ object Chapter5 {
       })
     }
 
-    def zipAll[B](s2: Stream[B]): Stream[(Option[A], Option[B])] = ???
+    def zipAll[B](s2: Stream[B]): Stream[(Option[A], Option[B])] = {
+      ???
+    }
   }
 
   case object Empty extends Stream[Nothing]

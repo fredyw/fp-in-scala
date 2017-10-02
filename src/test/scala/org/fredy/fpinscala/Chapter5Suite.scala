@@ -73,4 +73,9 @@ class Chapter5Suite extends FunSuite {
   test("Stream.zipWith") {
     assert(Chapter5.Stream(1, 2, 3).zipWith(Chapter5.Stream(4, 5, 6))((a, b) => a + b).toList == List(5, 7, 9))
   }
+
+  test("Stream.zipAll") {
+    assert(Chapter5.Stream(1, 2, 3).zipAll(Chapter5.Stream(4, 5, 6)).toList ==
+      List((Some(1), Some(4)), (Some(2), Some(5)), (Some(3), Some(6))))
+  }
 }
