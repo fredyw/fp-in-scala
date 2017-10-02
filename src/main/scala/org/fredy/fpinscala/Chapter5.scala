@@ -27,11 +27,11 @@ object Chapter5 {
     }
 
     def take(n: Int): Stream[A] = {
-      Stream.unfold(this)(a => {
+      Stream.unfold((this, n))(a => {
         a match {
-          case Empty => None
-          case Cons(h, t) if (n > 1) => Some((h(), t().take(n - 1)))
-          case Cons(h, _) if (n == 1) => Some((h(), Stream.empty))
+          case (Cons(h, t), n) if (n > 1) => Some((h(), (t(), n - 1)))
+          case (Cons(h, t), n) if (n == 1) => Some((h(), (Stream.empty, 0)))
+          case _ => None
         }
       })
     }
@@ -82,9 +82,16 @@ object Chapter5 {
       foldRight(Stream.empty[B])((h, t) => f(h).append(t))
     }
 
-    def zipWith[B,C](s2: Stream[B])(f: (A,B) => C): Stream[C] = ???
+    def zipWith[B, C](s2: Stream[B])(f: (A, B) => C): Stream[C] = {
+      Stream.unfold((this, s2))(a => {
+        a match {
+          case (Cons(h1, t1), Cons(h2, t2)) => Some((f(h1(), h2()), (t1(), t2())))
+          case _ => None
+        }
+      })
+    }
 
-    def zipAll[B](s2: Stream[B]): Stream[(Option[A],Option[B])] = ???
+    def zipAll[B](s2: Stream[B]): Stream[(Option[A], Option[B])] = ???
   }
 
   case object Empty extends Stream[Nothing]

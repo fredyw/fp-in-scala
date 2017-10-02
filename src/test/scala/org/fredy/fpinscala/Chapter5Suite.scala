@@ -69,4 +69,8 @@ class Chapter5Suite extends FunSuite {
   test("Stream.ones") {
     assert(Chapter5.Stream.ones.take(3).toList == List(1, 1, 1))
   }
+
+  test("Stream.zipWith") {
+    assert(Chapter5.Stream(1, 2, 3).zipWith(Chapter5.Stream(4, 5, 6))((a, b) => a + b).toList == List(5, 7, 9))
+  }
 }
