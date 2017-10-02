@@ -27,11 +27,13 @@ object Chapter5 {
     }
 
     def take(n: Int): Stream[A] = {
-      this match {
-        case Empty => Stream.empty
-        case Cons(h, t) if (n > 1) => Stream.cons(h(), t().take(n - 1))
-        case Cons(h, _) if (n == 1) => Stream.cons(h(), Stream.empty)
-      }
+      Stream.unfold(this)(a => {
+        a match {
+          case Empty => None
+          case Cons(h, t) if (n > 1) => Some((h(), t().take(n - 1)))
+          case Cons(h, _) if (n == 1) => Some((h(), Stream.empty))
+        }
+      })
     }
 
     def drop(n: Int): Stream[A] = {
@@ -43,7 +45,12 @@ object Chapter5 {
     }
 
     def takeWhile(p: A => Boolean): Stream[A] = {
-      foldRight(Stream.empty[A])((h, t) => if (p(h)) Stream.cons(h, t) else Stream.empty)
+      Stream.unfold(this)(a => {
+        a match {
+          case Cons(h, t) if (p(h())) => Some((h(), t()))
+          case _ => None
+        }
+      })
     }
 
     def forAll(p: A => Boolean): Boolean = {
@@ -55,7 +62,12 @@ object Chapter5 {
     }
 
     def map[B](f: A => B): Stream[B] = {
-      foldRight(Stream.empty[B])((h, t) => Stream.cons(f(h), t))
+      Stream.unfold(this)(a => {
+        a match {
+          case Cons(h, t) => Some((f(h()), t()))
+          case _ => None
+        }
+      })
     }
 
     def filter(f: A => Boolean): Stream[A] = {
@@ -69,6 +81,10 @@ object Chapter5 {
     def flatMap[B](f: A => Stream[B]): Stream[B] = {
       foldRight(Stream.empty[B])((h, t) => f(h).append(t))
     }
+
+    def zipWith[B,C](s2: Stream[B])(f: (A,B) => C): Stream[C] = ???
+
+    def zipAll[B](s2: Stream[B]): Stream[(Option[A],Option[B])] = ???
   }
 
   case object Empty extends Stream[Nothing]
