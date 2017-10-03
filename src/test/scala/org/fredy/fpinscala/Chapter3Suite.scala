@@ -109,6 +109,13 @@ class Chapter3Suite extends FunSuite {
     assert(Chapter3.List.zipWith(list1, list2)((a, b) => a + b) == Chapter3.List(5, 7, 9))
   }
 
+  test("List.startsWith") {
+    assert(Chapter3.List.startsWith(Chapter3.List(1, 2, 3), Chapter3.List(1, 2)) == true)
+    assert(Chapter3.List.startsWith(Chapter3.List(1, 2), Chapter3.List(1, 2)) == true)
+    assert(Chapter3.List.startsWith(Chapter3.List(2, 2, 3), Chapter3.List(1, 2)) == false)
+    assert(Chapter3.List.startsWith(Chapter3.List(1, 2), Chapter3.List(1, 2, 3)) == false)
+  }
+
   test("List.hasSubsequence") {
     val list = Chapter3.List(1, 2, 3, 4)
     assert(Chapter3.List.hasSubsequence(list, Chapter3.List(1, 2)) == true)

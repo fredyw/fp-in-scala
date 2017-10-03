@@ -102,7 +102,15 @@ object Chapter5 {
       })
     }
 
-    def startsWith[A](s: Stream[A]): Boolean = ???
+    def startsWith[A](s: Stream[A]): Boolean = {
+      Stream.unfold(this, s)(a => {
+        a match {
+          case (Empty, Cons(_, _)) => Some(false, (Stream.empty, Stream.empty))
+          case (Cons(h1, t1), Cons(h2, t2)) => Some(h1() == h2(), (t1(), t2()))
+          case _ => None
+        }
+      }).forAll(a => a)
+    }
 
     def tails: Stream[Stream[A]] = ???
 

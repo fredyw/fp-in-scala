@@ -78,4 +78,11 @@ class Chapter5Suite extends FunSuite {
     assert(Chapter5.Stream(1, 2, 3).zipAll(Chapter5.Stream(4, 5, 6)).toList ==
       List((Some(1), Some(4)), (Some(2), Some(5)), (Some(3), Some(6))))
   }
+
+  test("Stream.startsWith") {
+    assert(Chapter5.Stream(1, 2, 3).startsWith(Chapter5.Stream(1, 2)) == true)
+    assert(Chapter5.Stream(1, 2).startsWith(Chapter5.Stream(1, 2)) == true)
+    assert(Chapter5.Stream(2, 2, 3).startsWith(Chapter5.Stream(1, 2)) == false)
+    assert(Chapter5.Stream(1, 2).startsWith(Chapter5.Stream(1, 2, 3)) == false)
+  }
 }
