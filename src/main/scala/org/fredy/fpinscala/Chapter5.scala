@@ -112,7 +112,14 @@ object Chapter5 {
       }).forAll(a => a)
     }
 
-    def tails: Stream[Stream[A]] = ???
+    def tails: Stream[Stream[A]] = {
+      Stream.unfold(this)(a => {
+        a match {
+          case Empty => None
+          case (Cons(h, t)) => Some((Stream.cons(h(), t()), t()))
+        }
+      }).append(Stream(Stream.empty))
+    }
 
     def scanRight[B](z: B)(f: (A, => B) => B): Stream[B] = ???
   }
