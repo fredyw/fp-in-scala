@@ -101,6 +101,12 @@ object Chapter5 {
         }
       })
     }
+
+    def startsWith[A](s: Stream[A]): Boolean = ???
+
+    def tails: Stream[Stream[A]] = ???
+
+    def scanRight[B](z: B)(f: (A, => B) => B): Stream[B] = ???
   }
 
   case object Empty extends Stream[Nothing]
