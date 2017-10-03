@@ -121,7 +121,9 @@ object Chapter5 {
       }).append(Stream(Stream.empty))
     }
 
-    def scanRight[B](z: B)(f: (A, => B) => B): Stream[B] = ???
+    def scanRight[B](z: B)(f: (A, => B) => B): Stream[B] = {
+      tails.map(a => a.foldRight(z)(f))
+    }
   }
 
   case object Empty extends Stream[Nothing]
