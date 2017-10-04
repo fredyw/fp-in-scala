@@ -122,7 +122,12 @@ object Chapter5 {
     }
 
     def scanRight[B](z: B)(f: (A, => B) => B): Stream[B] = {
-      tails.map(a => a.foldRight(z)(f))
+      foldRight(Stream.empty[B])((h1, t1) => {
+        t1 match {
+          case Empty => Stream(f(h1, z)).append(Stream(z))
+          case Cons(h2, _) => Stream.cons(f(h1, h2()), t1)
+        }
+      })
     }
   }
 
