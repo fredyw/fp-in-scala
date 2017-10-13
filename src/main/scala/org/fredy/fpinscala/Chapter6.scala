@@ -6,7 +6,6 @@ object Chapter6 {
   }
 
   object RNG {
-
     // NB - this was called SimpleRNG in the book text
     case class Simple(seed: Long) extends RNG {
       def nextInt: (Int, RNG) = {
@@ -30,6 +29,10 @@ object Chapter6 {
         (f(a), rng2)
       }
 
-    def nonNegativeInt(rng: RNG): (Int, RNG) = ???
+    def nonNegativeInt(rng: RNG): (Int, RNG) = {
+      val (i, r) = rng.nextInt
+      val nonNegative = if (i < 0) -i else i
+      (nonNegative, r)
+    }
   }
 }
