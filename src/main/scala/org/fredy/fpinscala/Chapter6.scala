@@ -1,5 +1,7 @@
 package org.fredy.fpinscala
 
+import scala.annotation.tailrec
+
 object Chapter6 {
   trait RNG {
     def nextInt: (Int, RNG) // Should generate a random `Int`. We'll later define other functions in terms of `nextInt`.
@@ -56,6 +58,18 @@ object Chapter6 {
       val (d2, r2) = double(r1)
       val (d3, r3) = double(r2)
       ((d1, d2, d3), r3)
+    }
+
+    def ints(count: Int)(rng: RNG): (List[Int], RNG) = {
+      @tailrec
+      def f(count: Int, accu: List[Int], rng: RNG): (List[Int], RNG) = {
+        if (count == 0) (accu, rng)
+        else {
+          val (i, r) = rng.nextInt
+          f(count - 1, i :: accu, r)
+        }
+      }
+      f(count, List(), rng)
     }
   }
 }
