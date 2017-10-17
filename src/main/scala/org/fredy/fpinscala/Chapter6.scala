@@ -34,5 +34,7 @@ object Chapter6 {
       val nonNegative = if (i < 0) -i else i
       (nonNegative, r)
     }
+
+    def double(rng: RNG): (Double, RNG) = ???
   }
 }
