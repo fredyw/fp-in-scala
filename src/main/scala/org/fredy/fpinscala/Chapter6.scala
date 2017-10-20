@@ -71,5 +71,9 @@ object Chapter6 {
       }
       f(count, List(), rng)
     }
+
+    val _double: Rand[Double] = {
+      map(nonNegativeInt)(i => i / (Int.MaxValue.toDouble + 1))
+    }
   }
 }
