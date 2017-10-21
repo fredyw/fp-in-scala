@@ -88,6 +88,11 @@ object Chapter6 {
       fs.foldRight(unit(List[A]()))((a, b) => map2(a, b)((a1, b1) => a1 :: b1))
     }
 
-    def flatMap[A, B](f: Rand[A])(g: A => Rand[B]): Rand[B] = ???
+    def flatMap[A, B](f: Rand[A])(g: A => Rand[B]): Rand[B] = {
+      rng => {
+        val (a, r1) = f(rng)
+        g(a)(r1)
+      }
+    }
   }
 }
