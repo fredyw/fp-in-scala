@@ -83,5 +83,7 @@ object Chapter6 {
         (f(a, b), r2)
       }
     }
+
+    def sequence[A](fs: List[Rand[A]]): Rand[List[A]] = ???
   }
 }
