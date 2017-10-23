@@ -94,5 +94,7 @@ object Chapter6 {
         g(a)(r1)
       }
     }
+
+    def nonNegativeLessThan(n: Int): Rand[Int] = ???
   }
 }
