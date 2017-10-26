@@ -118,6 +118,15 @@ object Chapter6 {
     object State {
       def unit[S, A](a: A): State[S, A] =
         State(s => (a, s))
+
+      def modify[S](f: S => S): State[S, Unit] = for {
+        s <- get // Gets the current state and assigns it to `s`.
+        _ <- set(f(s)) // Sets the new state to `f` applied to `s`.
+      } yield ()
+
+      def get[S]: State[S, S] = State(s => (s, s))
+
+      def set[S](s: S): State[S, Unit] = State(_ => ((), s))
     }
 
     case class State[S, +A](run: S => (A, S)) {
@@ -135,6 +144,15 @@ object Chapter6 {
           f(a).run(s1)
         })
       }
+    }
+
+    sealed trait Input
+    case object Coin extends Input
+    case object Turn extends Input
+    case class Machine(locked: Boolean, candies: Int, coins: Int)
+
+    object Candy {
+      def simulateMachine(inputs: List[Input]): State[Machine, (Int, Int)] = ???
     }
   }
 }
