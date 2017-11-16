@@ -130,6 +130,15 @@ object Chapter6 {
     def get[S]: State[S, S] = State(s => (s, s))
 
     def set[S](s: S): State[S, Unit] = State(_ => ((), s))
+
+    def sequence[S, A](sas: List[State[S, A]]): State[S, List[A]] = {
+      def go(s: S, actions: List[State[S,A]], acc: List[A]): (List[A],S) =
+        actions match {
+          case Nil => (acc.reverse,s)
+          case h :: t => h.run(s) match { case (a,s2) => go(s2, t, a :: acc) }
+        }
+      State((s: S) => go(s,sas,List()))
+    }
   }
 
   case class State[S, +A](run: S => (A, S)) {
@@ -155,6 +164,25 @@ object Chapter6 {
   case class Machine(locked: Boolean, candies: Int, coins: Int)
 
   object Candy {
-    def simulateMachine(inputs: List[Input]): State[Machine, (Int, Int)] = ???
+    def update = (i: Input) => (s: Machine) =>
+      (i, s) match {
+        // Machine with no candy ignores all inputs.
+        case (_, Machine(_, 0, _)) => s
+        // Inserting coin into an unlocked machine does nothing.
+        case (Coin, Machine(false, _, _)) => s
+        // Turning knob on locked machine does nothing.
+        case (Turn, Machine(true, _, _)) => s
+        // Inserting coin into a locked machine will unlock it if any candy is present.
+        case (Coin, Machine(true, candy, coin)) => Machine(false, candy, coin + 1)
+        // Turning knob on unlocked machine will dispense candy and lock machine.
+        case (Turn, Machine(false, candy, coin)) => Machine(true, candy - 1, coin)
+      }
+
+    def simulateMachine(inputs: List[Input]): State[Machine, (Int, Int)] = {
+      for {
+        _ <- State.sequence(inputs.map(State.modify[Machine] _ compose(update)))
+        s <- State.get
+      } yield (s.coins, s.candies)
+    }
   }
 }
